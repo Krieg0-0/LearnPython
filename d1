@@ -37,3 +37,49 @@ for t in results:
     
 def metric(fn):
   
+
+
+
+
+def _odd_iter():
+    n=1
+    while True:
+        n=n+2
+        yield n
+        
+def _not_divisible(n):
+    return lambda x: x % n >0
+        
+def primes():
+    yield 2
+    it = _odd_iter()
+    while True:
+        n=next(it)
+        yield n
+        it = filter(_not_divisible(n),it)
+        
+for n in primes():
+    if n< 100:
+        print(n)
+    else:
+        break
+        
+        
+        def is_palindrome(n):
+    return str(n)==str(n)[::-1]
+
+L = [('Bob', 75), ('Adam', 92), ('Bart', 66), ('Lisa', 88)]
+def by_name(t):
+    x=list(t[0])
+    map(str.lower,x)
+    return x
+L2 = sorted(L, key=by_name)
+print(L2)
+
+
+def by_score(t):
+    x=-t[1]
+    return x
+L2 = sorted(L, key=by_score)
+print(L2)
+        
