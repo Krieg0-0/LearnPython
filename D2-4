@@ -1,0 +1,144 @@
+
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Sep  2 20:28:23 2019
+
+@author: 薛
+"""
+
+def is_palindrome(n):
+    return str(n)==str(n)[::-1]
+
+L = [('Bob', 75), ('Adam', 92), ('Bart', 66), ('Lisa', 88)]
+def by_name(t):
+    x=list(t[0])
+    map(str.lower,x)
+    return x
+L2 = sorted(L, key=by_name)
+print(L2)
+
+
+def by_score(t):
+    x=-t[1]
+    return x
+L2 = sorted(L, key=by_score)
+print(L2)
+
+
+#%%
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Sep  2 21:07:15 2019
+
+@author: 薛
+"""
+
+def createCounter():
+    def f():
+        i=0
+        while 1:
+            i=i+1
+            yield i
+    g=f()
+    def counter():
+        return next(g)
+    return counter
+
+
+def triangles():
+    out = [1]
+    while True:
+        yield out
+        out = [sum(i) for i in zip([0]+out, out+[0])]
+        
+n = 0
+results = []
+for t in triangles():
+    results.append(t)
+    n = n + 1
+    if n == 10:
+        break
+
+for t in results:
+    print(t)
+    
+    
+#%%
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Sep  4 10:22:26 2019
+
+@author: 薛
+"""
+
+import unittest
+
+from io import StringIO
+
+
+class TestDict(unittest.TestCase):
+
+    def setUp(self):
+        print('setUp...')
+
+    def tearDown(self):
+        print('tearDown...')
+  #%%      
+class Student(object):
+    def __init__(self, name, score):
+        self.name = name
+        self.score = score
+    def get_grade(self):
+        if self.score >= 60 and self.score < 80:
+            return 'B'
+        elif self.score >= 80 and self.score <= 100:
+            return 'A'
+        elif self.score >= 0 and self.score < 60:
+            return 'C'
+        else:
+            raise ValueError
+   #%%         
+def fact(n):
+    if n < 1:
+        raise ValueError()
+    if n == 1:
+        return 1
+    return n * fact(n - 1)
+
+
+
+f=open('/User/michael/test.txt','r')
+#%%
+fpath = r'C:\windows\system.ini'
+
+with open(fpath,'r') as f:
+    line=f.readline()
+    while line:
+        print(line.strip())
+        line = f.readline()
+    
+#%%
+from io import StringIO
+f=StringIO()
+f.write('hello')
+f.write(' ')
+f.write('world!')
+print(f.getvalue())
+
+
+#%%
+from io import StringIO
+f=StringIO('Hello!\nHi!\nGoodbye!')
+while True:
+    s=f.readline()
+    if s== '':
+        break
+    print(s.strip())
+    
+#%%
+from io import BytesIO
+f=BytesIO()
+f.write('中文'.encode('utf-8'))
+print(f.getvalue())
+f.read()
+
